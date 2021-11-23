@@ -1,0 +1,27 @@
+.linhaDescricao{
+    background: #B0C4DE;
+}
+
+.linhaDetalhes{
+    background: #eee;
+}
+
+.linhas{
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    padding: 5px;
+    vertical-align: top;
+}
+
+
+.outrasLinhasDados, .ultimaColuna{
+    text-align: right;
+}
+
+
+
+.linhasDados{
+    padding: 5px;
+    vertical-align: top;
+    padding-bottom: 20px;
+}

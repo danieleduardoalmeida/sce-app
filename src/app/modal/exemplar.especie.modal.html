@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Exemplar Espécie</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="exemplarEspecieForm" (ngSubmit)="associarExemplarEspecie()">
+        <ion-list>
+            <ion-radio-group formControlName="exemplar" (ionChange)="selecionarExemplar($event)">
+                <ion-item *ngFor="let exemplar of exemplares">
+                    <ion-label>{{exemplar.nome}}</ion-label>
+                    <ion-radio [value]="exemplar"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+        </ion-list>
+    
+        <ion-item>
+            <ion-label>Quantidade</ion-label>
+            <ion-input id="quantidade" autocapitalize="on" formControlName="quantidade" type="number" min="1"></ion-input>
+        </ion-item>
+
+        <ion-button type="submit" [disabled]="!exemplarEspecieForm.valid">
+            <strong>Associar</strong>
+        </ion-button>
+    </form>
+</ion-content>

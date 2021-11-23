@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon class="default-icons" slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" *ngIf="edit" fill="clear" (click)="remover()">
+      <ion-icon class="default-icons" slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="vistoriaForm" (ngSubmit)="salvar()">
+    <div>
+      <ion-item>
+        <ion-label>Imóvel</ion-label>
+        <ion-select id="imovel" autocapitalize="on" formControlName="imovel">
+          <ion-select-option *ngFor="let imovel of imoveis" [value]="imovel.id">{{ imovel.rua }} - {{ imovel.numero }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Atividade</ion-label>
+        <ion-select id="codigoAtividade" autocapitalize="on" formControlName="codigoAtividade">
+          <ion-select-option value="1-LI">1-LI - Levantamento de índice</ion-select-option>
+          <ion-select-option value="2-LI+T">2-LI+T - Levantamento de índice + Tratamento</ion-select-option>
+          <ion-select-option value="3-PE">3-PE - Ponto Estratégico</ion-select-option>
+          <ion-select-option value="4-T">4-T - Tratamento</ion-select-option>
+          <ion-select-option value="5-DF">5-DF - Delimitação de foco</ion-select-option>
+          <ion-select-option value="6-PVE">6-PVE - Pesquisa Vetorial Especial</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo Visita</ion-label>
+        <ion-select id="tipoVisita" autocapitalize="on" formControlName="tipoVisita">
+          <ion-select-option value="Normal">Normal</ion-select-option>
+          <ion-select-option value="Recuperação">Recuperação</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo Vistoria</ion-label>
+        <ion-select id="tipo" autocapitalize="on" formControlName="tipo">
+          <ion-select-option value="1">Sede</ion-select-option>
+          <ion-select-option value="2">Outros</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="edit">
+        <ion-label>Data</ion-label>
+        <ion-datetime id="dataVistoria" autocapitalize="on" formControlName="dataVistoria" displayFormat="DD/MM/YY"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Imóvel Fechado</ion-label>
+        <ion-toggle autocapitalize="on" formControlName="imovelFechado" (ionChange)="mostrarListaDepositos()"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Visita Recusada</ion-label>
+        <ion-toggle autocapitalize="on" formControlName="recusada" (ionChange)="mostrarListaDepositos()"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Visita Concluída</ion-label>
+        <ion-toggle autocapitalize="on" formControlName="concluida"></ion-toggle>
+      </ion-item>
+    </div>
+
+    <ion-item *ngIf="mostrarDepositos">
+      <ion-label>Depósitos inspecionados</ion-label>
+      <ion-select multiple="true" id="deposito" autocapitalize="on" formControlName="deposito" [compareWith]="compareWith">
+        <ion-select-option *ngFor="let deposito of depositos" [value]="deposito">{{ deposito.nome }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="div-buttons">
+      <ion-button class="default-buttons" type="submit" [disabled]="!vistoriaForm.valid">
+        <strong>Salvar</strong>
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

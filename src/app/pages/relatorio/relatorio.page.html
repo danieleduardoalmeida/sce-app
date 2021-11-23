@@ -1,0 +1,141 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon class="default-icons" slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="clear" (click)="gerarPdf()">
+      <ion-icon class="default-icons" slot="icon-only" name="download-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="print-wrapper" id="print-wrapper">
+    <div id="PrintInvoice" class="invoice-box"
+      style="max-width: 800px;margin: auto;padding: 30px;border: 1px solid #eee;box-shadow: 0 0 10px rgba(0, 0, 0, .15);font-size: 16px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #555;">
+      <table cellpadding="0" cellspacing="0" style="width: 100%;line-height: inherit;text-align: left;">
+        <tr class="heading">
+          <td colspan="3" class="linhaDescricao linhas">
+            Imóvel
+          </td>
+        </tr>
+
+        <tr class="heading">
+          <td class="linhaDetalhes linhas">
+            Rua
+          </td>
+          <td class="linhaDetalhes linhas">
+            Número
+          </td>
+          <td class="linhaDetalhes linhas">
+            Bairro
+          </td>
+        </tr>
+
+        <tr class="details" *ngFor="let celula of relatorio;">
+          <td class="linhasDados">
+            {{celula.rua}}
+          </td>
+
+          <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 20px;">
+            {{celula.numero}}
+          </td>
+
+          <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 20px;">
+            {{celula.bairro}}
+          </td>
+        </tr>
+
+        <tr class="heading">
+          <td colspan="3" class="linhaDescricao linhas">
+            Visita
+          </td>
+        </tr>
+
+        <tr class="heading">
+          <td class="linhaDetalhes linhas">
+            Código Atividade
+          </td>
+          <td class="linhaDetalhes linhas">
+            Tipo Visita
+          </td>
+          <td class="linhaDetalhes linhas">
+            Tipo Vistoria
+          </td>
+        </tr>
+        <tr class="details" *ngFor="let celula of relatorio;">
+          <td class="linhasDados">
+            {{celula.codigoAtividade}}
+          </td>
+
+          <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 20px;">
+            {{celula.tipoVisita}}
+          </td>
+
+          <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 20px;">
+            {{celula.tipo == 1 ? "Sede" : "Outros"}}
+          </td>
+        </tr>
+
+        <tr class="heading">
+          <td class="linhaDetalhes linhas">
+            Imóvel fechado
+          </td>
+          <td class="linhaDetalhes linhas">
+            Visita recusada
+          </td>
+          <td class="linhaDetalhes linhas">
+            Visita concluída
+          </td>
+        </tr>
+        <tr class="details" *ngFor="let celula of relatorio;">
+          <td class="linhasDados">
+            {{celula.imovelFechado ? "Sim" : "Não"}}
+          </td>
+
+          <td class="linhasDados outrasLinhasDados">
+            {{celula.recusada ? "Sim" : "Não"}}
+          </td>
+
+          <td class="linhasDados outrasLinhasDados">
+            {{celula.concluida ? "Sim" : "Não"}}
+          </td>
+        </tr>
+
+        <tr class="heading">
+          <td colspan="3" class="linhaDescricao linhas">
+            Exemplares encontrados
+          </td>
+        </tr>
+
+        <tr class="details" >
+          <td class="linhasDados" *ngIf="mostrarExemplares">
+            Não
+          </td>
+        </tr>
+
+        <tr class="heading" >
+          <td colspan="2" *ngIf="!mostrarExemplares"
+          class="linhaDetalhes linhas">
+            Exemplar
+          </td>
+          <td *ngIf="!mostrarExemplares"
+          class="linhaDetalhes linhas">
+            Espécie
+          </td>
+        </tr>
+
+        <ng-container *ngFor="let celula of relatorio;">
+          <tr class="details" *ngFor="let exemplar of celula.exemplarEspecie;">
+            <td colspan="2" class="linhasDados" *ngIf="!mostrarExemplares">
+              {{exemplar.exemplar}}
+            </td>
+  
+            <td class="linhasDados outrasLinhasDados" *ngIf="!mostrarExemplares">
+              {{exemplar.especie}}
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+</ion-content>

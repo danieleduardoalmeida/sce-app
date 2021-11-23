@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon class="default-icons" slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" *ngIf="edit" fill="clear" (click)="remover()">
+      <ion-icon class="default-icons" slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="usuarioForm" (ngSubmit)="salvar()">
+      <div>
+        <ion-item>
+          <ion-label>Usuário</ion-label>
+          <ion-input id="usuario" autocapitalize="on" formControlName="usuario"></ion-input>
+        </ion-item>
+        
+        <ion-item *ngIf="!edit">
+          <ion-label>Senha</ion-label>
+          <ion-input id="senha" autocapitalize="on" type="password" formControlName="senha"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label>Nome</ion-label>
+          <ion-input id="nome" autocapitalize="on" formControlName="nome"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input id="email" autocapitalize="on" type="email" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Tipo</ion-label>
+          <ion-select id="tipo" autocapitalize="on" formControlName="tipo">
+            <ion-select-option value="SECRETARIA_SAUDE">Secretaria de saúde</ion-select-option>
+            <ion-select-option value="AGENTE_EPIDEMIOLOGICO">Agente Epidemiológico</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Telefone Celular</ion-label>
+          <ion-input (ionChange)="atualizarCampoMascara($event)" id="telefone" autocapitalize="on" type="telefone" formControlName="telefone"></ion-input>
+        </ion-item>
+    </div>
+    <div class="div-buttons">
+      <ion-button class="default-buttons" type="submit" [disabled]="!usuarioForm.valid">
+        <strong>Salvar</strong>
+      </ion-button>
+    </div>
+    </form>
+  </ion-content>

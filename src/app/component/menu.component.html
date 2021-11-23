@@ -1,0 +1,38 @@
+<ion-list>
+    <ion-item *ngIf="usuarioAgenteEpidemiologico">
+      <ion-icon class="default-icons" slot="start" name="home-outline" ></ion-icon>
+      <ion-label (click)="irPaginaImoveis()">Imóvel</ion-label>
+    </ion-item>
+    <ion-item *ngIf="usuarioAgenteEpidemiologico">
+      <ion-icon class="default-icons" slot="start" name="clipboard-outline" ></ion-icon>
+      <ion-label (click)="irPaginaVistorias()">Visita</ion-label>
+    </ion-item>
+    <ion-item *ngIf="usuarioAgenteEpidemiologico">
+      <ion-icon class="default-icons" slot="start" name="locate-outline" ></ion-icon>
+      <ion-label (click)="irPaginaTratamentos()">Tratamento</ion-label>
+    </ion-item>
+    <ion-item *ngIf="usuarioAgenteEpidemiologico">
+      <ion-icon class="default-icons" slot="start" name="flask-outline" ></ion-icon>
+      <ion-label (click)="irPaginaAnalisesEntrada()">Análise Registro</ion-label>
+    </ion-item>
+    <ion-item class="item-accordion" *ngIf="usuarioAgenteEpidemiologico">
+      <ion-icon class="default-icons" slot="start" name="checkmark-done-circle-outline"></ion-icon>
+      <ion-label (click)="irPaginaAnalisesConclusao()">Análise Conclusão</ion-label>
+    </ion-item>
+    <ion-item *ngIf="usuarioAgenteEpidemiologico">
+      <ion-icon class="default-icons" slot="start" name="eyedrop-outline" *ngIf="usuarioAgenteEpidemiologico"></ion-icon>
+      <ion-label (click)="irPaginaAmostras()">Amostra</ion-label>
+    </ion-item>
+    <ion-item *ngIf="usuarioAdministrador">
+      <ion-icon class="default-icons" slot="start" name="person"></ion-icon>
+      <ion-label (click)="irPaginaUsuarios()">Usuário</ion-label>
+    </ion-item>
+    <ion-item *ngIf="usuarioSecretariaSaude">
+      <ion-icon class="default-icons" slot="start" name="document-text-outline"></ion-icon>
+      <ion-label (click)="irPaginaRelatorio()">Relatório</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon class="default-icons" slot="start" name="log-out"></ion-icon>
+      <ion-label (click)="logout()">Sair</ion-label>
+    </ion-item>
+  </ion-list>

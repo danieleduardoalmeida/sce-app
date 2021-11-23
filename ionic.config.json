@@ -1,0 +1,7 @@
+{
+  "name": "sce",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

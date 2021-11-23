@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon class="default-icons" slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" *ngIf="edit" fill="clear" (click)="remover()">
+      <ion-icon class="default-icons" slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="analiseEntradaForm" (ngSubmit)="salvar()">
+      <div>
+        <ion-item>
+          <ion-label>Visita</ion-label>
+          <ion-select id="vistoria" autocapitalize="on" formControlName="vistoria">
+            <ion-select-option *ngFor="let vistoria of vistorias" [value]="vistoria.id">{{ vistoria.imovel.rua }} - {{ vistoria.imovel.numero}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Laboratório</ion-label>
+          <ion-input id="laboratorio" autocapitalize="on" formControlName="laboratorio"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Laboratorista</ion-label>
+          <ion-input id="laboratorista" autocapitalize="on" formControlName="laboratorista"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="edit">
+          <ion-label>Data</ion-label>
+          <ion-datetime id="dataEntrada" autocapitalize="on" formControlName="dataEntrada" displayFormat="DD/MM/YY"></ion-datetime>
+        </ion-item>
+    </div>
+    <div class="div-buttons">
+      <ion-button class="default-buttons" type="submit" [disabled]="!analiseEntradaForm.valid">
+        <strong>Salvar</strong>
+      </ion-button>
+    </div>
+    </form>
+  </ion-content>

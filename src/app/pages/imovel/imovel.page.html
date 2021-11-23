@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon class="default-icons" slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" *ngIf="edit" fill="clear" (click)="remover()">
+      <ion-icon class="default-icons" slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="imovelForm" (ngSubmit)="salvar()">
+      <div>
+        <ion-item>
+          <ion-label>Rua</ion-label>
+          <ion-input id="rua" autocapitalize="on" formControlName="rua" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Número</ion-label>
+          <ion-input id="numero" autocapitalize="on" formControlName="numero" type="number" min="1" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Lado</ion-label>
+          <ion-select id="lado" autocapitalize="on" formControlName="lado" >
+            <ion-select-option value="Direito">Direito</ion-select-option>
+            <ion-select-option value="Esquerdo">Esquerdo</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Complemento</ion-label>
+          <ion-input id="complemento" autocapitalize="on" formControlName="complemento"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>CEP</ion-label>
+          <ion-input (ionChange)="atualizarCampoMascara($event)" id="cep" autocapitalize="on" type="cep" formControlName="cep" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Número Quarteirão</ion-label>
+          <ion-input id="quarteirao" autocapitalize="on" formControlName="quarteirao" type="number" min="1" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Bairro</ion-label>
+          <ion-input id="bairro" autocapitalize="on" formControlName="bairro" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo</ion-label>
+          <ion-select id="tipo" autocapitalize="on" formControlName="tipo" >
+            <ion-select-option value="Residencial">Residencial</ion-select-option>
+            <ion-select-option value="Comércio">Comércio</ion-select-option>
+            <ion-select-option value="Terreno Baldio">Terreno Baldio</ion-select-option>
+            <ion-select-option value="Ponto Estratégico">Ponto Estratégico</ion-select-option>
+            <ion-select-option value="Outro">Outro</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Zona</ion-label>
+          <ion-select id="zona" autocapitalize="on" formControlName="zona" >
+            <ion-select-option value="Urbana">Urbana</ion-select-option>
+            <ion-select-option value="Rural">Rural</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cidade</ion-label>
+          <ion-input id="cidade" autocapitalize="on" formControlName="cidade" ></ion-input>
+        </ion-item>
+      </div>
+      <div class="div-buttons">
+        <ion-button class="default-buttons" type="submit" [disabled]="!imovelForm.valid" class="ion-text-center">
+          <strong>Salvar</strong>
+        </ion-button>
+      </div>
+
+    </form>
+
+  </ion-content>

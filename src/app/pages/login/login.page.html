@@ -1,0 +1,24 @@
+<ion-content class="login-content">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="login center">
+      <ion-item class="login-item">
+        <ion-label position="floating">Usuário</ion-label>
+        <ion-input id="usuario" autocapitalize="on" formControlName="usuario" required></ion-input>
+      </ion-item>
+      <ion-item class="login-item">
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input id="senha" type="password" formControlName="senha" required></ion-input>
+      </ion-item>
+      <div class="div-buttons">
+        <ion-button class="default-buttons" type="submit" [disabled]="!loginForm.valid">
+          <strong>Entrar</strong>
+        </ion-button>
+      </div>
+      <div class="div-buttons">
+        <ion-button class="default-buttons" (click)="esqueciSenha()">
+          <strong>Esqueci senha</strong>
+        </ion-button>
+      </div>
+    </div>
+  </form>
+</ion-content>

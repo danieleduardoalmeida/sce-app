@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon class="default-icons" slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" *ngIf="edit" fill="clear" (click)="remover()">
+      <ion-icon class="default-icons" slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="tratamentoForm" (ngSubmit)="salvar()">
+      <div>
+        <ion-item>
+          <ion-label>Visita</ion-label>
+          <ion-select id="vistoria" autocapitalize="on" formControlName="vistoria" (ionChange)="selecionarVistoria($event)">
+            <ion-select-option *ngFor="let vistoria of vistorias" [value]="vistoria.id">{{ vistoria.imovel.rua }} - {{ vistoria.imovel.numero}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="mostrarDepositos">
+          <ion-label>Depósitos</ion-label>
+          <ion-select id="deposito" autocapitalize="on" formControlName="deposito">
+            <ion-select-option *ngFor="let deposito of depositos" [value]="deposito.id">{{ deposito.nome }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Quantidade de depósitos eliminados</ion-label>
+          <ion-input id="quantidadeDepositos" autocapitalize="on" formControlName="quantidadeDepositos" type="number" min="0" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo de larvicida 1</ion-label>
+          <ion-input id="larvicida1" autocapitalize="on" formControlName="larvicida1"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Quantidade de larvicida 1</ion-label>
+          <ion-input id="quantidadeLarvicida1" autocapitalize="on" formControlName="quantidadeLarvicida1" type="number" min="0" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Quantidade de depósitos larvicida 1</ion-label>
+          <ion-input id="quantidadeDepositosLarvicida1" autocapitalize="on" formControlName="quantidadeDepositosLarvicida1" type="number" min="0" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo de larvicida 2</ion-label>
+          <ion-input id="larvicida2" autocapitalize="on" formControlName="larvicida2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Quantidade de larvicida 2</ion-label>
+          <ion-input id="quantidadeLarvicida2" autocapitalize="on" formControlName="quantidadeLarvicida2" type="number" min="0" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Quantidade de depósitos larvicida 2</ion-label>
+          <ion-input id="quantidadeDepositosLarvicida2" autocapitalize="on" formControlName="quantidadeDepositosLarvicida2" type="number" min="0" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo de adulticida</ion-label>
+          <ion-input id="adulticida" autocapitalize="on" formControlName="adulticida"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Quantidade de adulticida</ion-label>
+          <ion-input id="quantidadeAdulticida" autocapitalize="on" formControlName="quantidadeAdulticida" type="number" min="0" ></ion-input>
+        </ion-item>
+      </div>
+      <div class="div-buttons">
+        <ion-button class="default-buttons" type="submit" [disabled]="!tratamentoForm.valid">
+          <strong>Salvar</strong>
+        </ion-button>
+      </div>
+    </form>
+  </ion-content>

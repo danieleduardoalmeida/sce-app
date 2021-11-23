@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon class="default-icons" slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" *ngIf="edit" fill="clear" (click)="remover()">
+      <ion-icon class="default-icons" slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form [formGroup]="amostraForm" (ngSubmit)="salvar()">
+      <div>
+        <ion-item>
+          <ion-label>Visita</ion-label>
+          <ion-select id="vistoria" autocapitalize="on" formControlName="vistoria" (ionChange)="selecionarVistoria($event)">
+            <ion-select-option *ngFor="let vistoria of vistorias" [value]="vistoria.id">{{ vistoria.imovel.rua }} - {{ vistoria.imovel.numero}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="mostrarDepositos">
+          <ion-label>Depósitos</ion-label>
+          <ion-select id="deposito" autocapitalize="on" formControlName="deposito">
+            <ion-select-option *ngFor="let deposito of depositos" [value]="deposito.id">{{ deposito.nome }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="mostrarAnalises">
+          <ion-label>Análises</ion-label>
+          <ion-select id="analise" autocapitalize="on" formControlName="analise">
+            <ion-select-option *ngFor="let analise of analises" [value]="analise.id">{{ analise.laboratorio }} - {{ analise.dataEntradaFormatada}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Quantidade de tubitos</ion-label>
+          <ion-input id="quantidadeTubitos" autocapitalize="on" formControlName="quantidadeTubitos" type="number" min="0" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tipo</ion-label>
+          <ion-input id="tipo" autocapitalize="on" formControlName="tipo"></ion-input>
+        </ion-item>
+      </div>
+      <div class="div-buttons">
+        <ion-button class="default-buttons" type="submit" [disabled]="!amostraForm.valid">
+          <strong>Salvar</strong>
+        </ion-button>
+      </div>
+    </form>
+  </ion-content>

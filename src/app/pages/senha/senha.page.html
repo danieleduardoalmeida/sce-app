@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <form [formGroup]="senhaForm" (ngSubmit)="alterar()">
+    <div>
+      <ion-item>
+        <ion-label>Senha Antiga</ion-label>
+        <ion-input id="senhaAntiga" type="password" formControlName="senhaAntiga" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nova Senha</ion-label>
+        <ion-input id="senhaNova" type="password" formControlName="senhaNova" required></ion-input>
+      </ion-item>
+  </div>
+  <div class="div-buttons">
+    <ion-button class="default-buttons" type="submit" [disabled]="!senhaForm.valid">
+      <strong>Alterar</strong>
+    </ion-button>
+  </div>
+  </form>
+</ion-content>

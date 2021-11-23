@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+      <app-detalhes-usuario slot="end"></app-detalhes-usuario>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+    <ion-list *ngFor="let analise of analises">
+            <ion-item (click) ="alterar(analise.id)">
+                <ion-label>{{analise.laboratorio}} - {{analise.dataEntradaFormatada}}</ion-label>
+            </ion-item>
+    </ion-list>
+</ion-content>

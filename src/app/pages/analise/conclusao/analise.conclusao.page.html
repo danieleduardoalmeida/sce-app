@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" (click)="cancelar()">
+      <ion-icon class="default-icons" slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" *ngIf="edit" fill="clear" (click)="remover()">
+      <ion-icon class="default-icons" slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="analiseConclusaoForm" (ngSubmit)="salvar()">
+    <div>
+      <ion-label>Espécies</ion-label>
+      <ion-list>
+        <ion-item *ngFor="let especie of especies">
+          <ion-label>{{especie.nome}}</ion-label>
+          <ion-checkbox [value]="especie" [checked]="especie.especieSelecionada"
+          (ionChange)="selecionarEspecie($event)"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="div-buttons">
+      <ion-button class="default-buttons" type="submit" [disabled]="!analiseConclusaoForm.valid">
+        <strong>Salvar</strong>
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
